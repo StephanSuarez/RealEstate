@@ -12,7 +12,7 @@ import cookieParser from 'cookie-parser';
 
 // App Express created
 const app = express();
-const port = 3000;
+const port = 8080;
 
 // Set csurf 
 app.use( cookieParser() );
