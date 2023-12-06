@@ -1,0 +1,56 @@
+extends ../layout/appProperties.pug
+
+block styles
+  link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block contain
+  //- pre= JSON.stringify(property, undefined, 2)
+  h2.my-10.font-extrabold.text-center #{property.title}
+
+  div(class="container-information grid grid-cols-1 md:grid-cols-2 gap-4 p-4")
+    div.text-lg
+      p.font-bold Category: #{property.category.category}
+      p.font-bold Price: #{property.price.price}
+    div.text-lg(style="height: 100%; display: flex; flex-direction: column;")
+      input(type="hidden", id="latData" name="latData" value=property.latitude)
+      input(type="hidden", id="lngData" name="lngData" value=property.longitude)
+      input(type="hidden", id="titleData" name="titleData" value=property.title)
+
+    div.text-center(style="height: 100%;")
+      if property.image
+        div#public-img-container
+          img(src=`/uploads/${property.image}`, alt=property.title, class="m-auto img-thumbnail")
+      else
+        div(class="w-32 h-32 bg-gray-200")
+      div.bg-gray-100.shadow-md.p-4.rounded
+        p.font-bold Description
+        p=property.description
+        p.font-bold Rooms: #{property.rooms}
+        p.font-bold Bathrooms: #{property.bathrooms}  
+        p.font-bold Parking: #{property.parking }
+
+    div(id="map" class="h-full")  
+
+  if !user
+    div(class="contactSeller mt-8 bg-gray-100 p-4 rounded text-center")
+      p.text-lg.font-bold.mb-4 To contact the seller 
+      a(href="/authentication/login" class="text-green-500 hover:underline") Log in 
+      | or 
+      a(href="/authentication/signup" class="text-green-500 hover:underline") Sign up
+  else if !seller
+    div.message-container.bg-white.p-4.rounded.shadow-md  
+      if errorsSendingData
+        .max-w-md.mx-auto.my-10
+          each error in errorsSendingData
+            p.bg-red-700.text-white.uppercase.text-xs.text-center.p-2.mb-1.font-blod= error.msg
+      form(action="" method="POST")
+        div.mb-4
+          label.block.text-gray-700.text-sm.font-bold.mb-2 Send a message to the seller 
+          textarea.resize-none.border.border-gray-300.rounded.py-2.px-4.block.w-full.mb-2(type="text" name="msgFile" id="msgFile")
+        button.bg-green-500.text-white.font-bold.py-2.px-4.rounded-full
+          | Send
+
+
+block scripts
+  script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+  script(src="/js/showMap.js")

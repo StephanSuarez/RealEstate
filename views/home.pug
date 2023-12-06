@@ -1,0 +1,39 @@
+extends ./layout/appProperties.pug
+
+block styles
+  link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block contain
+  div 
+    h2.my-10.font-extrabold.text-center Come see your next home
+
+    div.flex.flex-wrap.items-center.my-7
+      p.mr-2 Filter By:
+      div.mr-2
+        label(for='categoryFilter').mr-2 Category
+        select(id='categoryFilter').w-32
+          option(value='').text- Select
+          each category in categories
+            option(value=category.id)= category.category
+
+      div
+        label(for='priceFilter').mr-2 Price
+        select(id='priceFilter').w-32
+          option(value='').text- Select
+          each price in prices
+            option(value=price.id)= price.price
+
+    div(id="map" class="h-[600px]")
+
+    div 
+      - let properties = houses
+      include ./templates/showPropertiesBy
+    
+    div 
+      - properties = apartments
+      include ./templates/showPropertiesBy
+
+block scripts
+  script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+  script(src="/js/mapHome.js")
+  

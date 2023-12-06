@@ -1,0 +1,13 @@
+
+extends ../layout/admin.pug
+
+block contain
+    //- pre= JSON.stringify(property, undefined, 2)
+    if property.messages.length == 0
+        p Your property doesn't have messages
+    else
+        each message in property.messages
+            .message-container.border.p-4.my-4.rounded
+                p.text-lg.font-bold.mb-2 Message from: #{message.user.name}
+                p.text-gray-600.mb-2 Enviado el #{message.createdAt.toLocaleDateString()} a las #{message.createdAt.toLocaleTimeString()}
+                p= message.message

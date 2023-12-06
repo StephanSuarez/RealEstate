@@ -1,0 +1,57 @@
+extends ../layout/admin.pug
+
+block contain
+  .p-10
+    h1.text-4xl.my-10.font-extrabold.text-center Real
+      span.font-normal State
+    .mt-8.mx-auto.max-w-md
+      h2(id="subtitle-property").text-2xl.font-extrabold.text-center #{page}
+    
+    a(href="/properties/create" class="bg-green-500 px-4 py-2 rounded-lg shadow-lg.px-4 text-white text-lg font-semibold transition duration-300 ease-in-out transform hover:translate-y-0.5 hover:text-black") Create a propertie
+
+    //- pre= JSON.stringify(properties, undefined, 2)
+    - if (properties.length == 0)
+      div.flex.justify-center.items-center.my-9
+        p.text-xl.font-bold There are no Properties
+
+    each property in properties
+      .property-container.grid.grid-cols-4.grid-to-flex.p-4.border.border-gray-300.shadow-lg.mb-4
+        .property-view.col-span-1.pr-4.my-auto
+          if property.image
+            img(src=`/uploads/${property.image}`, alt=property.title, class="img-thumbnail m-auto")
+          else
+            div(class="w-32 h-32 bg-gray-200")
+
+        .property-details.col-span-2.p-4.text-center
+          a.text-3xl.font-bold.text-primary.mb-4(href= `/property/information/${property.id}`)= property.title
+          div.bg-gray-100.shadow-md.p-4.rounded 
+            p.font-bold Category: #{property.category.category}
+            p.font-bold Price: #{property.price.price}
+            div.shadow-md.bg-white.p-4.rounded
+              p.font-bold Description
+              p= property.description
+            div.flex-column.flex-start.mt-1
+              div
+                a(href=`/property/${property.id}/messages`).flex.flex-start.mt-1
+                  div(class=`w-4 h-4 rounded-full mr-2 bg-black`)
+                  p= `${property.messages.length} Messages`
+              div.flex.flex-start.mt-1
+                div(class=`w-4 h-4 rounded-full mr-2 ${property.publicated ? 'bg-green-500' : 'bg-red-500'} property-status-ball` data-property-status-ball=`${property.id}`)
+                p(class=`${property.publicated ? 'text-green-500' : 'text-red-500'} font-semibold property-status` data-property-status=`${property.id}`)= property.publicated ? 'Published' : 'Unpublished'
+
+        .property-buttons.col-span-1.flex.flex-col.items-center.my-auto
+          button(type='button' data-property-id=`${property.id}` class='property-id text-center w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mb-2')= property.publicated ? 'Unpublish' : 'Publish'
+          a(href=`/properties/edit/${property.id}` class='text-center w-full bg-purple-500 hover:bg-purple-700 text-white py-2 px-4 rounded mb-2') Edit
+          form(action=`/property/delete/${property.id}` method='POST' class='flex flex-col items-center')
+            input(type='submit' class='text-center w-full bg-red-500 hover:bg-red-700 text-white py-2 px-4 rounded' value='Delete')
+  
+    div.flex.justify-center.items-center.h-10.my-9
+      nav 
+        - let buttonPage = 1
+        while buttonPage <= totalProperties
+          a( href=`/properties?pag=${buttonPage}` class=`inline-flex items-center justify-center border border-green-500 rounded w-8 h-8 m-1 text-green-500  hover:bg-green-500 hover:text-white ${(currentPag == buttonPage) ? 'bg-green-600 text-white' : '' }` )= buttonPage
+          - buttonPage++
+
+block scripts 
+  script(src="/js/togglePublish.js")
+

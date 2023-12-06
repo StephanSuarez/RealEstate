@@ -1,0 +1,11 @@
+extends ../layout/admin.pug
+
+block contain
+    .h-screen.flex.flex-col.items-center.justify-center.text-center
+        h2.text-8xl.font-bold
+            span.text-green-500 | 404
+            |  Not Found
+        p.text-lg.mb-4
+            | The page you are looking for could not be found.
+        a(href="/" class="text-lg font-semibold transition duration-300 ease-in-out transform hover:translate-y-0.5 hover:text-black text-green-500")
+            | Return to Home

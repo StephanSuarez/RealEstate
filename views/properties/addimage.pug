@@ -1,0 +1,25 @@
+extends ../layout/admin.pug
+
+block styles
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css")
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block contain
+  .p-10
+    h1.text-4xl.my-10.font-extrabold.text-center
+      | Real
+      span.font-normal.text-black.ml-1
+        | State
+
+  .mt-8.mx-auto.max-w-3xl.p-4.bg-gray-100.rounded-lg.shadow-lg
+    h2.text-2xl.font-extrabold.text-center.mb-4
+      | #{page}
+
+      .w-full 
+        form(id="addImagesProperty" class="dropzone border-dashed border-gray-300 bg-gray-100 p-4 text-center cursor-pointer" action=`/properties/addimage/${idProperty}` method="POST")
+          
+        button(id="postPropertyImage" class="block w-full bg-green-500 hover:bg-blue-700 text-white font-bold my-5 py-3 px-4 rounded") Add Image
+
+block scripts 
+    script(src="/js/dropimg.js")
+

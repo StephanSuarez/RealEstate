@@ -1,0 +1,51 @@
+{
+  "name": "real-estate",
+  "version": "1.0.0",
+  "description": "this is a project about Real Estate",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
+    "js": "webpack --watch",
+    "dev": "concurrently \"npm run js\" \"npm run css\"",
+    "db:import": "node ./seed/seeder.js -i",
+    "db:delete": "node ./seed/seeder.js -d"
+  },
+  "keywords": [
+    "Real-Estate",
+    "House",
+    "Floor"
+  ],
+  "author": "Stephan Suarez",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "csurf": "^1.11.0",
+    "dotenv": "^16.3.1",
+    "dropzone": "^5.9.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.5.2",
+    "nodemailer": "^6.9.7",
+    "pug": "^3.0.2",
+    "sequelize": "^6.32.1",
+    "tedious": "^16.4.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1",
+    "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.3",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

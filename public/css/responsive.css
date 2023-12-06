@@ -1,0 +1,167 @@
+:root{
+  --green-color: #22C55E;
+  
+  --sm-font: 0.8rem;
+  --md-font: 1rem;
+  --lg-font: 1.25rem;
+  --xl-font: 1.5rem;
+
+  --title-font-size-sm: 24px;
+  --title-font-size-md: 28px;
+  --title-font-size-lg: 32px;
+  --title-font-size-xl: 36px;
+
+  --paragraph-font-size-sm: 14px;
+  --paragraph-font-size-md: 16px;
+  --paragraph-font-size-lg: 18px;
+  --paragraph-font-size-xl: 20px;
+}
+
+h2{
+  font-size: var(--title-font-size-lg);
+}
+
+p{
+  font-size: var(--paragraph-font-size-lg);
+}
+
+#arrow-search{
+  display: none;
+}
+
+#arrow-search:active{
+  cursor: pointer;
+  box-shadow: 1px 1px #000;
+}
+
+#container-header {
+  transition: height 0.3s ease-in-out;
+}
+
+#container-header.expanded {
+  height: 200px; 
+  align-items: start;
+}
+
+.top12px{
+  margin-top: 12px;
+}
+
+.arrow180{
+  margin-top: 15px;
+  transform: rotate(180deg);
+} 
+
+#public-img-container > img{
+  width: 100%;
+  object-fit: cover;
+}
+
+
+/* Media queries */
+
+
+@media screen and (max-width: 1030px) {
+  .hide-filter{
+    display: none;
+  }
+  #logoRE > h1{
+    font-size: var(--md-font);
+  }
+  #userSearch{
+    width: 250px;
+  }
+  #log-container{
+    font-weight: 300;
+    padding: 6px;
+    width: auto;
+  }
+  #log-container > a{
+    font-size: var(--sm-font);
+    align-items: center;
+    margin: 2px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .grid-to-flex{
+    display: flex;
+    flex-direction: column;
+  }
+  #subtitle-property{
+    margin-bottom: 20px;
+  }
+  #public-img-container{
+    width: 100%;
+  }
+  #search-container-show{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media screen and (max-width: 700px){
+  
+  .filter-form{
+    display: none;
+  }
+  #arrow-search{
+    display: flex;
+    justify-content: center;
+  }
+  #general-search-container{
+    position: relative;
+  }
+  .show-filter{
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+  }
+  #filterCategory-container{
+    display: flex;
+  }
+  #map{
+    height: 400px;  
+  }
+  h2{
+    font-size: var(--title-font-size-md);
+  }
+  
+  p{
+    font-size: var(--paragraph-font-size-md);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  #public-information-container > div{
+    flex-direction: column;
+    align-items: start;
+  }
+  #public-information-container > div > p{
+    text-align: start;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  #userSearch{
+    width: 150px;
+  }
+  h2{
+    font-size: var(--title-font-size-sm);
+  }
+  
+  p{
+    font-size: var(--paragraph-font-size-sm);
+  }
+}
+
+
+
+
+

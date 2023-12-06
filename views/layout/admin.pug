@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Real State | #{page}
+        block styles
+        link(rel="stylesheet", href="/css/app.css")
+        link(rel="stylesheet", href="/css/responsive.css")
+    body.min-h-screen.bg-gray-50
+        //- include includes/header-admin.pug
+        include includes/header-appProperties.pug
+
+        main(class="mx-auto container mt-5x px-2")
+            block contain
+
+            block scripts
